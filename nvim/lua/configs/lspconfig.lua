@@ -16,8 +16,14 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+lspconfig.clangd.setup {
+  cmd = { "clangd", "--background-index" },
+  filetypes = { "c", "cpp", "h", "objc", "objcpp" },
+  root_dir = lspconfig.util.root_pattern("compile_commands.json", ".git"),
+}
+
 -- configuring single server, example: typescript
--- lspconfig.tsserver.setup {
+-- lspconfig.ts_ls.setup {
 --   on_attach = nvlsp.on_attach,
 --   on_init = nvlsp.on_init,
 --   capabilities = nvlsp.capabilities,
